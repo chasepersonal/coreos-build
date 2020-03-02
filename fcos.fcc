@@ -1,0 +1,22 @@
+variant: fcos
+version: 1.0.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - <insert ssh key here>
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/eth0.nmconnection
+      mode: 0600
+      overwrite: true
+      contents:
+        inline: |
+          [connection]
+          interface-name=eth0
+
+          [ipv4]
+          method=manual
+          addresses=192.168.0.45/24
+          dns=1.1.1.1;8.8.8.8
+          gateway=192.168.0.1

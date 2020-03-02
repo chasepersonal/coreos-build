@@ -4,12 +4,18 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/python:3.6
+      - image: 'cimg/python:3.6'
     steps:
       - checkout
       - setup_remote_docker
       - run
-          name: run build script
+          name: Install podman
+          command: sudo apt install podman
+      - run
+          name: Prepare fcos.fcc for build script
+          command: sed -i 's#<insert ssh key here>#ssh-rsa ${SSH_KEY}#g' fcos.fcc
+      - run
+          name: Run coreos build script
           command: source build-coreos.sh
       - aws-s3/sync
           from: coreos-build
