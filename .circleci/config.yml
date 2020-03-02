@@ -9,9 +9,6 @@ jobs:
       - checkout
       - setup_remote_docker
       - run
-          name: Install podman
-          command: sudo apt install podman
-      - run
           name: Prepare fcos.fcc for build script
           command: sed -i 's#<insert ssh key here>#ssh-rsa ${SSH_KEY}#g' fcos.fcc
       - run
