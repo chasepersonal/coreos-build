@@ -1,0 +1,23 @@
+version: 2.1
+  orbs:
+    aws-s3: circleci/aws-s3@1.0.15
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.6
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run
+          name: run build script
+          command: source build-coreos.sh
+      - aws-s3/sync
+          from: coreos-build
+          to: 's3://environments.chaseweyer.com'
+
+workflows:
+  build:
+    jobs:
+      - build:
+          filters:
+            only: master
