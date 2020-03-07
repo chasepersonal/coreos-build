@@ -10,12 +10,12 @@ jobs:
       - setup_remote_docker
       - run
           name: Prepare fcos.fcc for build script
-          command: sed -i 's#<insert ssh key here>#ssh-rsa ${SSH_KEY}#g' fcos.fcc
+          command: sed -i 's#<insert ssh key here>#${SSH_KEY}#g' fcos.fcc
       - run
           name: Run coreos build script
           command: source build-coreos.sh
       - aws-s3/sync
-          from: coreos-build
+          from: coreos-build-single
           to: 's3://environments.chaseweyer.com'
 
 workflows:

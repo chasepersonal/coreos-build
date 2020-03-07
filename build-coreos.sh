@@ -45,9 +45,9 @@ else
     fi
 
     # Create a directory for the iso if one does not exist
-    mkdir -p coreos-build
+    mkdir -p coreos-build-single
     # Export iso from final cotainer
-    docker cp ${CONTAINER}:/${ISO} /coreos-build/${ISO}
+    docker cp ${CONTAINER}:/${ISO} /coreos-build-single/${ISO}
 fi
 
 
