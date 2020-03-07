@@ -19,7 +19,7 @@ jobs:
           command: source build-coreos.sh
       - aws-s3/sync:
           from: coreos-build-single
-          to: 's3://environments.chaseweyer.com'
+          to: 's3://environments.chaseweyer.com/coreos-build-single'
 
 workflows:
   build:
