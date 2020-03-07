@@ -58,6 +58,7 @@ else
     echo "** Remove old container and run final container with embeded ISO to confirm ISO was properly embeded **"
     docker rm $(docker ps -a -q);
     docker run -i coreos-installer-final iso show $ISO > embed-output
+    cat embed-output
 
     if [[ $(cat embed-output) == "Error: No embedded Ignition config." ]];
     then

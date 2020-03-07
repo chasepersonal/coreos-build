@@ -13,7 +13,7 @@ jobs:
           command: chmod +x build-coreos.sh
       - run:
           name: Prepare fcos.fcc for build script
-          command: sed -i 's#<insert ssh key here>#${SSH_KEY}#g' fcos.fcc
+          command: sed -i "s#<insert ssh key here>#${SSH_KEY}#g" fcos.fcc
       - run:
           name: Run coreos build script
           command: source build-coreos.sh
